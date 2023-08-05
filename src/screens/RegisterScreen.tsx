@@ -88,7 +88,7 @@ const RegisterScreen: React.FC = () => {
       <Box sx={{ width: "100%" }} component="div">
         <Grid container rowSpacing={1}>
           <Grid item xs={12} md={6}>
-            Already Have Account? <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Login</Link>
           </Grid>
         </Grid>
       </Box>

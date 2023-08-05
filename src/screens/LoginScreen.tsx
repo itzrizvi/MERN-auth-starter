@@ -64,7 +64,7 @@ const LoginScreen: React.FC = () => {
       <Box sx={{ width: "100%" }} component="div">
         <Grid container rowSpacing={1}>
           <Grid item xs={12} md={6}>
-            New Customer? <Link to="/register">Register</Link>
+            New here? <Link to="/register">Register</Link>
           </Grid>
         </Grid>
       </Box>
