@@ -32,7 +32,7 @@ const RegisterScreen: React.FC = () => {
           <Grid item xs={12} md={12}>
             <TextField
               fullWidth
-              id="outlined-basic-email"
+              id="outlined-basic-name"
               label="Enter Your Name"
               variant="outlined"
               name="name"

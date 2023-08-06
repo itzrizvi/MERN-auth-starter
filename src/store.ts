@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer, { AuthState } from "./slices/authSlice";
+import authReducer from "./slices/authSlice";
 import { apiSlice } from "./slices/apiSlice";
+import { AuthState } from "./utils/types";
 
 export interface RootState {
   auth: AuthState;

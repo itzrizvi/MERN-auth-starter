@@ -1,12 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthState, UserPayload } from "../utils/types";
 
-type UserInfo = string | null;
-export interface AuthState {
-  userInfo: UserInfo;
-}
-type SetCredentialsPayload = UserInfo;
-
-export const initialState: { userInfo: UserInfo } = {
+export const initialState: AuthState = {
   userInfo: localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo") as string)
     : null,
@@ -18,7 +13,7 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (
       state: AuthState,
-      action: PayloadAction<SetCredentialsPayload>,
+      action: PayloadAction<UserPayload | null>,
     ) => {
       state.userInfo = action.payload;
       localStorage.setItem("userInfo", JSON.stringify(action.payload));

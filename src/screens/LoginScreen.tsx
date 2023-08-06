@@ -1,19 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormContainer from "../components/FormContainer";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Login } from "@mui/icons-material";
+import CircularProgress from "@mui/material/CircularProgress";
 import Grid from "@mui/material/Grid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlice";
+import { RootState } from "../store";
+import { UserPayload } from "../utils/types";
+import { toast } from "react-toastify";
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+  const { userInfo } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
 
   const submitHandler = async (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    console.log("submit");
+    try {
+      const res: UserPayload = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      toast.success("Logged in successfully!!");
+      navigate("/");
+    } catch (error: any) {
+      toast.error(error?.data?.message || error.error);
+    }
   };
 
   return (
@@ -50,14 +75,20 @@ const LoginScreen: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               style={{ marginBottom: "15px" }}
             />
-            <Button
-              variant="contained"
-              type="submit"
-              endIcon={<Login />}
-              style={{ marginBottom: "15px" }}
-            >
-              Login
-            </Button>
+            {!isLoading ? (
+              <Button
+                variant="contained"
+                type="submit"
+                endIcon={<Login />}
+                style={{ marginBottom: "15px" }}
+              >
+                Login
+              </Button>
+            ) : (
+              <Box sx={{ display: "flex", marginBottom: "15px" }}>
+                <CircularProgress />
+              </Box>
+            )}
           </Grid>
         </Grid>
       </Box>
