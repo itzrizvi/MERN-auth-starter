@@ -20,3 +20,7 @@ export interface UserPayload {
 export interface AuthState {
   userInfo: UserPayload | null;
 }
+
+export interface LogoutResponse {
+  message: string;
+}

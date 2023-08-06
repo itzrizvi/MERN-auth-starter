@@ -34,10 +34,14 @@ const LoginScreen: React.FC = () => {
     try {
       const res: UserPayload = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      toast.success("Logged in successfully!!");
+      toast.success("Logged in successfully!!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       navigate("/");
     } catch (error: any) {
-      toast.error(error?.data?.message || error.error);
+      toast.error(error?.data?.message || error.error, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 

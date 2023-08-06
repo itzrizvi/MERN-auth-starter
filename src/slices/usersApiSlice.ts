@@ -1,4 +1,4 @@
-import { LoginData, LoginResponse } from "../utils/types";
+import { LoginData, LoginResponse, LogoutResponse } from "../utils/types";
 import { apiSlice } from "./apiSlice";
 const USERS_URL = "/api/users";
 
@@ -11,7 +11,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    logout: builder.mutation<LogoutResponse, {}>({
+      query: () => ({
+        url: `${USERS_URL}/logout`,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation } = usersApiSlice;
