@@ -1,4 +1,10 @@
-import { LoginData, LoginResponse, LogoutResponse } from "../utils/types";
+import {
+  LoginData,
+  LoginResponse,
+  LogoutResponse,
+  RegisterData,
+  RegsterResponse,
+} from "../utils/types";
 import { apiSlice } from "./apiSlice";
 const USERS_URL = "/api/users";
 
@@ -7,6 +13,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     login: builder.mutation<LoginResponse, LoginData>({
       query: (data) => ({
         url: `${USERS_URL}/auth`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    register: builder.mutation<RegsterResponse, RegisterData>({
+      query: (data) => ({
+        url: `${USERS_URL}`,
         method: "POST",
         body: data,
       }),
@@ -20,4 +33,5 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = usersApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation } =
+  usersApiSlice;

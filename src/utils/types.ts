@@ -24,3 +24,17 @@ export interface AuthState {
 export interface LogoutResponse {
   message: string;
 }
+
+// Register/Sign Up Types
+export interface RegisterData {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface RegsterResponse {
+  message?: string;
+  _id: string;
+  name: string;
+  email: string;
+}

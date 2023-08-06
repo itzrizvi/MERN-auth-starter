@@ -13,6 +13,7 @@ import { setCredentials } from "../slices/authSlice";
 import { RootState } from "../store";
 import { UserPayload } from "../utils/types";
 import { toast } from "react-toastify";
+import { Typography } from "@mui/material";
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -47,7 +48,15 @@ const LoginScreen: React.FC = () => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <Typography
+        variant="h3"
+        component="h4"
+        fontSize={40}
+        fontWeight={700}
+        mb={5}
+      >
+        Sign In
+      </Typography>
       <Box
         component="form"
         sx={{ width: "100%" }}

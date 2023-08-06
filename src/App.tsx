@@ -6,6 +6,8 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrivateRoute from "./components/PrivateRoute";
+import ProfileScreen from "./screens/ProfileScreen";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +18,9 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
+        <Route path="" element={<PrivateRoute />}>
+          <Route path="/profile" element={<ProfileScreen />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
