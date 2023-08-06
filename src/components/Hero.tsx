@@ -1,8 +1,11 @@
 import React from "react";
 import { Container, Card, Button, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
+import { RootState } from "../store";
+import { useSelector } from "react-redux";
 
 const Hero: React.FC = () => {
+  const { userInfo } = useSelector((state: RootState) => state.auth);
   return (
     <Container>
       <Box sx={{ py: 5, display: "flex", justifyContent: "center" }}>
@@ -24,25 +27,27 @@ const Hero: React.FC = () => {
             an HTTP-Only cookie. It also uses Redux Toolkit and the Material UI
             library
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to="/login"
-              sx={{ mr: 2 }}
-            >
-              Sign In
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              to="/register"
-              component={Link}
-            >
-              Sign Up
-            </Button>
-          </Box>
+          {!userInfo ? (
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="/login"
+                sx={{ mr: 2 }}
+              >
+                Sign In
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                to="/register"
+                component={Link}
+              >
+                Sign Up
+              </Button>
+            </Box>
+          ) : null}
         </Card>
       </Box>
     </Container>
