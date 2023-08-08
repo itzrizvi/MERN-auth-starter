@@ -6,7 +6,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import { Edit } from "@mui/icons-material";
 import Grid from "@mui/material/Grid";
-import { useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -20,7 +19,6 @@ const ProfileScreen: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [name, setName] = useState<string>("");
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state: RootState) => state.auth);
