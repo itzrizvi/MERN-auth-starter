@@ -38,3 +38,16 @@ export interface RegsterResponse {
   name: string;
   email: string;
 }
+// Update Profile Types
+export interface UpdateData {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
+export interface UpdateResponse {
+  message?: string;
+  _id: string;
+  name: string;
+  email: string;
+}
