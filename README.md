@@ -1,4 +1,4 @@
-# MERN Authentication Starter
+# MERN Authentication
 
 # React + Typescript + Vite + Material UI
 
